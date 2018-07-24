@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Keyshape -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 109.68 119">
+    <style>
+@keyframes a0_t { 0% { transform: translate(82.68px,27px) scale(0.9,0.9) translate(-24px,-24px); } 20% { transform: translate(82.68px,27px) scale(0.9,0.9) translate(-24px,-24px); animation-timing-function: cubic-bezier(0.42,0,0.58,1); } 26.6666% { transform: translate(82.68px,27px) scale(1,1) translate(-24px,-24px); animation-timing-function: cubic-bezier(0.42,0,0.58,1); } 40% { transform: translate(82.68px,27px) scale(0.9,0.9) translate(-24px,-24px); animation-timing-function: cubic-bezier(0.42,0,0.58,1); } 100% { transform: translate(82.68px,27px) scale(0.9,0.9) translate(-24px,-24px); } }
+@keyframes a1_t { 0% { transform: translate(29.34px,24.5px) scale(1,1) translate(-91.02px,-24.5px); } 36.6666% { transform: translate(29.34px,24.5px) scale(1,1) translate(-91.02px,-24.5px); } 46.6666% { transform: translate(29.34px,24.5px) scale(1.2,1.2) translate(-91.02px,-24.5px); } 56.6666% { transform: translate(29.34px,24.5px) scale(1,1) translate(-91.02px,-24.5px); } 100% { transform: translate(29.34px,24.5px) scale(1,1) translate(-91.02px,-24.5px); } }
+@keyframes a2_t { 0% { transform: translate(18.77px,24.5px) scale(1,1) translate(-80.45px,-24.5px); } 30% { transform: translate(18.77px,24.5px) scale(1,1) translate(-80.45px,-24.5px); } 40% { transform: translate(18.77px,24.5px) scale(1.2,1.2) translate(-80.45px,-24.5px); } 50% { transform: translate(18.77px,24.5px) scale(1,1) translate(-80.45px,-24.5px); } 100% { transform: translate(18.77px,24.5px) scale(1,1) translate(-80.45px,-24.5px); } }
+    </style>
+    <title>Artboard 4</title>
+    <path d="M81.43,26.91C74.2833,21.1033,64.3733,18.2,51.7,18.2L15.41,18.2L15.41,93.8L0,93.8L0,98.7L15.41,98.7L15.41,119L22.9,119L22.9,98.7L55.58,98.7L55.58,93.8L22.9,93.8L22.9,84.87L51.7,84.87C64.3667,84.87,74.2767,81.9433,81.43,76.09C88.5833,70.2367,92.16,62.0267,92.16,51.46C92.16,40.9,88.5833,32.7167,81.43,26.91ZM76.18,71.41C70.5133,76.0767,62.4,78.41,51.84,78.41L22.9,78.41L22.9,24.82L51.84,24.82C62.5067,24.82,70.6433,27.1267,76.25,31.74C81.8567,36.3533,84.6633,42.9767,84.67,51.61C84.67,60.15,81.84,66.75,76.18,71.41Z" fill="#10adb4"/>
+    <g transform="translate(82.68,27) scale(0.9,0.9) translate(-24,-24)" style="animation: a0_t 3s linear infinite both;">
+        <ellipse fill="#3a67d9" rx="24" ry="24" transform="translate(-61.68,0) translate(85.68,24)"/>
+        <path fill="#fff" d="M87.36,19.16L90.75,19.16L90.75,33L94.68,33L94.68,16L87.36,16L87.36,19.16Z" transform="translate(29.34,24.5) translate(-91.02,-24.5)" style="animation: a1_t 3s linear infinite both;"/>
+        <path fill="#fff" d="M78.87,18.89L78.87,23.02L74.68,23.02L74.68,25.98L78.87,25.98L78.87,30.11L82,30.11L82,25.98L86.22,25.98L86.22,23.02L82,23.02L82,18.89L78.87,18.89Z" transform="translate(18.77,24.5) translate(-80.45,-24.5)" style="animation: a2_t 3s linear infinite both;"/>
+    </g>
+</svg>

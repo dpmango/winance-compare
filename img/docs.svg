@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Keyshape -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 129 156">
+    <style>
+@keyframes Rectangle-3-Copy-5_o { 0% { opacity: 0; } 16.6667% { opacity: 0; } 30% { opacity: 1; } 86.6667% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes Rectangle-3-Copy-4_o { 0% { opacity: 0; } 13.3333% { opacity: 0; } 26.6667% { opacity: 1; } 83.3333% { opacity: 1; } 96.6667% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes Rectangle-3-Copy-3_o { 0% { opacity: 0; } 10% { opacity: 0; } 23.3333% { opacity: 1; } 80% { opacity: 1; } 93.3333% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes Rectangle-3-Copy-2_o { 0% { opacity: 0; } 6.6667% { opacity: 0; } 20% { opacity: 1; } 76.6667% { opacity: 1; } 90% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes Rectangle-3-Copy_o { 0% { opacity: 0; } 3.3333% { opacity: 0; } 16.6667% { opacity: 1; } 73.3333% { opacity: 1; } 86.6667% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes Rectangle-3_o { 0% { opacity: 0; } 13.3333% { opacity: 1; } 70% { opacity: 1; } 83.3333% { opacity: 0; } 100% { opacity: 0; } }
+    </style>
+    <title>Group 9</title>
+    <desc>Created with Sketch.</desc>
+    <rect id="Rectangle-2-Copy" fill="#3A67D9" opacity="0.56969" width="120" height="147" stroke="none" stroke-width="1" fill-rule="evenodd" transform="translate(0,0) translate(9,9)"/>
+    <g transform="translate(60,73.5) translate(-60,-73.5)">
+        <rect id="Rectangle-2" fill="#3A67D9" width="120" height="147" stroke="none" stroke-width="1" fill-rule="evenodd"/>
+        <ellipse id="Oval-Copy" fill="#10ADB4" rx="10.5" ry="10.5" stroke="none" stroke-width="1" fill-rule="evenodd" transform="translate(97.5,126.5)"/>
+        <rect id="Rectangle-3-Copy-5" fill="#10ADB4" width="48" height="2" stroke="none" stroke-width="1" fill-rule="evenodd" opacity="0" transform="translate(0,0) translate(21,80)" style="animation: Rectangle-3-Copy-5_o 3s linear infinite both;"/>
+        <rect id="Rectangle-3-Copy-4" fill="#10ADB4" width="66" height="2" stroke="none" stroke-width="1" fill-rule="evenodd" opacity="0" transform="translate(0,0) translate(21,71)" style="animation: Rectangle-3-Copy-4_o 3s linear infinite both;"/>
+        <rect id="Rectangle-3-Copy-3" fill="#10ADB4" width="62" height="2" stroke="none" stroke-width="1" fill-rule="evenodd" opacity="0" transform="translate(0,0) translate(21,62)" style="animation: Rectangle-3-Copy-3_o 3s linear infinite both;"/>
+        <rect id="Rectangle-3-Copy-2" fill="#10ADB4" width="64" height="2" stroke="none" stroke-width="1" fill-rule="evenodd" opacity="0" transform="translate(0,0) translate(21,53)" style="animation: Rectangle-3-Copy-2_o 3s linear infinite both;"/>
+        <rect id="Rectangle-3-Copy" fill="#10ADB4" width="69" height="2" stroke="none" stroke-width="1" fill-rule="evenodd" opacity="0" transform="translate(0,0) translate(21,44)" style="animation: Rectangle-3-Copy_o 3s linear infinite both;"/>
+        <rect id="Rectangle-3" fill="#10ADB4" width="48" height="8" stroke="none" stroke-width="1" fill-rule="evenodd" opacity="0" transform="translate(0,0) translate(21,22)" style="animation: Rectangle-3_o 3s linear infinite both;"/>
+    </g>
+</svg>
