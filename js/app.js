@@ -25,7 +25,7 @@ $(document).ready(function () {
   // READY - triggered when PJAX DONE
   ////////////
   function pageReady() {
-    initTypograf();
+    // initTypograf();
     legacySupport();
     updateHeaderActiveClass();
     initHeaderScroll();
@@ -54,6 +54,7 @@ $(document).ready(function () {
     closeMobileMenu();
 
     swiperMasonryInit();
+    _window.on('resize', debounce(swiperMasonryInit, 200));
 
     cabinetPagination("[partners-size-js]");
     cabinetPagination("[partner-format-js]");
@@ -222,6 +223,7 @@ $(document).ready(function () {
    */
   function filterMasonry(bntName, masonryName, blockName) {
     _document.on("click", bntName, function (e) {
+
       var elem = $(e.currentTarget),
           attrElem = elem.attr("data-pagination"),
           blogBlock = $(blockName),
@@ -236,7 +238,7 @@ $(document).ready(function () {
         horizontalOrder: true
       };
 
-      if ($(_window).width() > 767) {
+      if (_window.width() > 767) {
         masonryGrid.masonry(masonryGridOption);
       }
 
@@ -262,9 +264,7 @@ $(document).ready(function () {
         }
       }
 
-      if ($(_window).width() > 767) {
-        masonryGrid.masonry('reloadItems').masonry('layout');
-      }
+      masonryGrid.masonry('reloadItems').masonry('layout');
     });
   }
 
@@ -403,8 +403,8 @@ $(document).ready(function () {
     });
   }
 
-  $(_window).on("load resize", function () {
-    if ($(_window).width() >= 768) {
+  _window.on("load resize", function () {
+    if (_window.width() >= 768) {
       if ($(".homepage .main").length > 0) {
         clearMainBLock();
         createMainBlock();
@@ -434,16 +434,10 @@ $(document).ready(function () {
     var text = elem.val().replace(/\s+/g, ' '),
         i = elem.next('i');
 
-    var width = i.width();
+    i.text(text !== '' ? text : "");
 
-    if (text !== '') {
-      i.text(text);
-    } else {
-      i.text("");
-    }
-
-    width = i.width();
-    elem.css('width', width + 8);
+    var width = Math.floor(i.outerWidth());
+    elem.css('width', width + 8); // ? +8
   }
 
   function initCalcValue(rangeNameElem, inputDataElem) {
@@ -462,20 +456,27 @@ $(document).ready(function () {
     resizeInputs(monthDataElem);
   }
 
+  function convertStrToNumber(str) {
+    return parseInt(str.replace(/ /g, ''), 10);
+  }
+
   function changeInputDataVal(inputElem, minVal, maxVal, defaultVal) {
     $(inputElem).on("input", function (e) {
       var elem = $(e.target),
-          elemVal = elem.val(),
+          elemVal = convertStrToNumber(elem.val()),
           rangeElem = elem.closest(".calc__tabs-col").find("input[type='range']"),
           rangeMax = rangeElem[0].max,
           rangeMin = rangeElem[0].min;
 
+      // TODO - why minVal, maxVAl if rangeMax and rangeMin are present?
       if (elemVal >= minVal && elemVal <= maxVal) {
+        // in range
         rangeElem.val(elemVal);
         rangeElem.css({
           'backgroundSize': (elemVal - rangeMin) * 100 / (rangeMax - rangeMin) + '% 100%'
         });
       } else {
+        // outside range
         rangeElem.val(defaultVal);
         rangeElem.css({
           'backgroundSize': '0% 100%'
@@ -491,11 +492,11 @@ $(document).ready(function () {
   function limitValueInput(inputDataElem, minVal, maxVal) {
     $(inputDataElem).on("blur", function (e) {
       var elem = $(e.target),
-          elemVal = elem.val();
+          elemVal = convertStrToNumber(elem.val());
 
       var rangeElem = elem.closest(".calc__tabs-col").find("input[type='range']"),
-          rangeMax = rangeElem[0].max,
-          rangeMin = rangeElem[0].min;
+          rangeMax = parseInt(rangeElem[0].max, 10),
+          rangeMin = parseInt(rangeElem[0].min, 10);
 
       if (elemVal === "" || elemVal < minVal) {
         elem.val(reductionToFormat(minVal.toString()));
@@ -522,13 +523,77 @@ $(document).ready(function () {
     });
   }
 
-  function maskInput(inputElem, maxVal) {
-    $(inputElem).mask(maxVal, {
+  function maskInput(inputElem, mask) {
+    $(inputElem).mask(mask, {
       translation: {
         'Z': {
           pattern: /[0-9]/,
           optional: true
         }
+      }
+    });
+
+    $(inputElem).on('keydown', function (e) {
+      // Allow: backspace, delete, tab, escape, enter
+      // ?? . (190)
+      if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+      // Allow: Ctrl+A
+      e.keyCode == 65 && e.ctrlKey === true ||
+      // Allow: home, end, left, right
+      e.keyCode >= 35 && e.keyCode <= 39) {
+        return;
+      }
+      // Ensure that it is a number and stop the keypress
+      if ((e.shiftKey || e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
+        e.preventDefault();
+      }
+
+      var clearVal = $(this).val().replace(/ /g, '');
+
+      if (clearVal.length >= 2) {
+        e.preventDefault();
+      }
+    });
+
+    $(inputElem).on('keyup', function (e) {
+      // if empty - put 1
+      if ($(this).val().length == 0) {
+        $(this).val("3");
+      }
+    });
+  }
+
+  function maskInputPrice(inputElem, maxLength) {
+    // $(inputElem).mask(mask);
+
+    $(inputElem).on('keydown', function (e) {
+      // Allow: backspace, delete, tab, escape, enter
+      // ?? . (190)
+      if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+      // Allow: Ctrl+A
+      e.keyCode == 65 && e.ctrlKey === true ||
+      // Allow: home, end, left, right
+      e.keyCode >= 35 && e.keyCode <= 39) {
+        return;
+      }
+      // Ensure that it is a number and stop the keypress
+      if ((e.shiftKey || e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
+        e.preventDefault();
+      }
+
+      if ($(this).val().replace(/ /g, '').length >= maxLength) {
+        e.preventDefault();
+      }
+    });
+    $(inputElem).on('keyup', function (e) {
+      // if number is typed format with space
+      if ($(this).val().length > 0) {
+        var cursorPosition = this.selectionStart;
+
+        $(this).val($(this).val().replace(/ /g, ""));
+        $(this).val($(this).val().replace(/\B(?=(\d{3})+(?!\d))/g, " "));
+
+        this.selectionEnd = cursorPosition;
       }
     });
   }
@@ -588,12 +653,12 @@ $(document).ready(function () {
         percentVal = parseFloat(parentElem.find("[percent-val-js] strong").text());
 
     var resultMain = parseFloat(valSumInvestment * percentVal / 100 * valCountMonth + valSumInvestment).toFixed(2),
-        resultMainOneMonth = parseFloat(valSumInvestment * percentVal / 100 + valSumInvestment).toFixed(2),
-        resultMainThreeMonth = parseFloat(valSumInvestment * percentVal / 100 * 3 + valSumInvestment).toFixed(2);
+        resultMainOneMonth = parseFloat(valSumInvestment * percentVal / 100 + valSumInvestment).toFixed(0),
+        resultMainThreeMonth = parseFloat(valSumInvestment * percentVal / 100 * 3 + valSumInvestment).toFixed(0);
 
     if (isNaN(resultMain)) resultMain = 0 .toFixed(2);
-    if (isNaN(resultMainOneMonth)) resultMainOneMonth = 0 .toFixed(2);
-    if (isNaN(resultMainThreeMonth)) resultMainThreeMonth = 0 .toFixed(2);
+    if (isNaN(resultMainOneMonth)) resultMainOneMonth = 0 .toFixed(0);
+    if (isNaN(resultMainThreeMonth)) resultMainThreeMonth = 0 .toFixed(0);
 
     mainSumElem.text(reductionToFormat(resultMain));
     mainSumOneMonthElem.text(reductionToFormat(resultMainOneMonth));
@@ -656,9 +721,9 @@ $(document).ready(function () {
    */
   function initCalc() {
     maskInput("[maskMonth-js]", "ZZ");
-    // maskInput("[maskSumRu-js]", 'ZZZZZZZ');
-    // maskInput("[maskSumEn-js]", 'ZZZZZZ');
-    // maskInput("[maskSumEu-js]", 'ZZZZZZ');
+    maskInputPrice("[maskSumRu-js]", 7);
+    maskInputPrice("[maskSumEn-js]", 6);
+    maskInputPrice("[maskSumEu-js]", 6);
 
     changeInputDataVal("[monthDataRu-calc-js]", 3, 12, "3");
     changeInputDataVal("[sumDataRu-calc-js]", 10000, 5000000, "10000");
@@ -725,7 +790,6 @@ $(document).ready(function () {
       freeMode: true
     });
   }
-
   function initSwiperTestimonials() {
     swiperTestimonials = new Swiper('.homepage .swiper-testimonials-js', {
       wrapperClass: "swiper-wrapper",
@@ -741,7 +805,6 @@ $(document).ready(function () {
       freeMode: true
     });
   }
-
   function initSwiperPrint() {
     swiperPrint = new Swiper('.homepage .swiper-print-js', {
       wrapperClass: "swiper-wrapper",
@@ -757,7 +820,6 @@ $(document).ready(function () {
       freeMode: true
     });
   }
-
   function initSwiperReasons() {
     swiperReasons = new Swiper('.swiper-reasons-js', {
       wrapperClass: "swiper-wrapper",
@@ -779,59 +841,65 @@ $(document).ready(function () {
   }
 
   function swiperMasonryInit() {
-    $(_window).on("load resize", function () {
 
-      function masonryOpt(blockName) {
-        return {
-          itemSelector: blockName,
-          gutter: 18,
-          horizontalOrder: true
-        };
-      }
+    function masonryOpt(blockName) {
+      return {
+        itemSelector: blockName,
+        gutter: 18,
+        horizontalOrder: true
+      };
+    }
 
-      var msnrGridBlog = $(".homepage [masonry-blog-js]"),
-          msnrGridTestimonials = $(".homepage [masonry-testimonials-js]"),
-          msnrGridPrint = $(".homepage [masonry-print-js]");
+    var msnrGridBlog = $(".homepage [masonry-blog-js]"),
+        msnrGridTestimonials = $(".homepage [masonry-testimonials-js]"),
+        msnrGridPrint = $(".homepage [masonry-print-js]");
 
-      if ($(_window).width() < 768) {
+    if (_window.width() < 768) {
+      if ($(".homepage").length > 0) {
         initSwiperBlog();
         initSwiperTestimonials();
         initSwiperPrint();
-        initSwiperReasons();
-
-        if (msnrGridBlog.length) {
-          msnrGridBlog.masonry('destroy');
-        }
-        if (msnrGridTestimonials.length) {
-          msnrGridTestimonials.masonry('destroy');
-        }
-        if (msnrGridPrint.length) {
-          msnrGridPrint.masonry('destroy');
-        }
-      } else {
-
-        if ($(".homepage .swiper-blog-js").length > 0 && swiperBlog !== 0) {
-          swiperBlog.destroy(true, true);
-          swiperBlog = 0;
-        }
-        if ($(".homepage .swiper-testimonials-js").length > 0 && swiperTestimonials !== 0) {
-          swiperTestimonials.destroy(true, true);
-          swiperTestimonials = 0;
-        }
-        if ($(".homepage .swiper-print-js").length > 0 && swiperPrint !== 0) {
-          swiperPrint.destroy(true, true);
-          swiperPrint = 0;
-        }
-        if ($(".swiper-reasons-js").length > 0 && swiperReasons !== 0) {
-          swiperReasons.destroy(true, true);
-          swiperReasons = 0;
-        }
-
-        msnrGridBlog.masonry(masonryOpt('.homepage .blogs__block'));
-        msnrGridTestimonials.masonry(masonryOpt('.homepage .testimonials__block'));
-        msnrGridPrint.masonry(masonryOpt('.homepage .print__block'));
       }
-    });
+      if ($(".swiper-reasons-js").length > 0) {
+        initSwiperReasons();
+      }
+
+      if (msnrGridBlog.data('masonry')) {
+        msnrGridBlog.masonry('destroy');
+        msnrGridBlog.removeData('masonry');
+      }
+      if (msnrGridTestimonials.data('masonry')) {
+        msnrGridTestimonials.masonry('destroy');
+        msnrGridTestimonials.removeData('masonry');
+      }
+      if (msnrGridPrint.data('masonry')) {
+        msnrGridPrint.masonry('destroy');
+        msnrGridPrint.removeData('masonry');
+      }
+    } else {
+
+      if ($(".homepage .swiper-blog-js").length > 0 && swiperBlog) {
+        swiperBlog.destroy(true, true);
+        swiperBlog = 0;
+      }
+      if ($(".homepage .swiper-testimonials-js").length > 0 && swiperTestimonials) {
+        swiperTestimonials.destroy(true, true);
+        swiperTestimonials = 0;
+      }
+      if ($(".homepage .swiper-print-js").length > 0 && swiperPrint) {
+        swiperPrint.destroy(true, true);
+        swiperPrint = 0;
+      }
+
+      if ($(".swiper-reasons-js").length > 0 && swiperReasons) {
+        swiperReasons.destroy(true, true);
+        swiperReasons = 0;
+      }
+
+      msnrGridBlog.masonry(masonryOpt('.homepage .blogs__block'));
+      msnrGridTestimonials.masonry(masonryOpt('.homepage .testimonials__block'));
+      msnrGridPrint.masonry(masonryOpt('.homepage .print__block'));
+    }
   }
   // ====================
 
@@ -934,27 +1002,29 @@ $(document).ready(function () {
   }
   function initSelect() {
     $("[selectric-js]").selectric({
-      inheritOriginalWidth: true,
-      nativeOnMobile: false,
+      inheritOriginalWidth: false,
+      nativeOnMobile: true,
       onInit: function onInit(event) {
-        var elem = $(event),
-            labelElem = $(elem).closest(".selectric-wrapper").siblings(".form__label"),
-            elemWidth = parseInt($(elem).closest(".selectric-wrapper").css("width"));
-
-        var browser = getBrowser(),
-            browserName = browser.name.toLowerCase();
-
-        var cornerWidth = browserName === "chrome" ? 30 : 50;
-
-        if (labelElem.length === 0) {
-          elem.closest(".selectric-wrapper").css({
-            width: "100%"
-          });
-        } else {
-          elem.closest(".selectric-wrapper").css({
-            width: elemWidth < 200 ? elemWidth + cornerWidth : elemWidth + cornerWidth
-          });
-        }
+        // let elem = $(event),
+        //   labelElem = $(elem).closest(".selectric-wrapper").siblings(".form__label"),
+        //   elemWidth = parseInt($(elem).closest(".selectric-wrapper").css("width"));
+        //
+        // const browser = getBrowser(),
+        //   browserName = browser.name.toLowerCase();
+        //
+        // const cornerWidth = (browserName === "chrome") ? 30 : 50;
+        //
+        // if (labelElem.length === 0) {
+        //   elem.closest(".selectric-wrapper").css({
+        //     width: "100%"
+        //   })
+        // } else {
+        //   // 135px - it's label width
+        //   elem.closest(".selectric-wrapper").css({
+        //     // width: (elemWidth < 200) ? elemWidth + cornerWidth : elemWidth + (cornerWidth)
+        //     width: "calc(100% - 135px)"
+        //   })
+        // }
       },
       onChange: function onChange(e) {
         var elem = $(e);
@@ -1165,16 +1235,20 @@ $(document).ready(function () {
 
 
   // ====================
-  function isElementInViewport(el) {
+  function isAnyPartOfElementInViewport(el) {
     var rect = el.getBoundingClientRect();
+    var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    var windowWidth = window.innerWidth || document.documentElement.clientWidth;
+    var vertInView = rect.top <= windowHeight && rect.top + rect.height >= 0;
+    var horInView = rect.left <= windowWidth && rect.left + rect.width >= 0;
 
-    return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+    return vertInView && horInView;
   }
 
   var footerElem = $("footer");
 
   _window.on("resize scroll load", function () {
-    if (footerElem.length > 0 && isElementInViewport(footerElem[0])) {
+    if (footerElem.length > 0 && isAnyPartOfElementInViewport(footerElem[0])) {
       $("[hideStickyBtn-js]").fadeOut();
     } else {
       $("[hideStickyBtn-js]").fadeIn();
@@ -1299,7 +1373,7 @@ $(document).ready(function () {
       }
     });
 
-    var modalBtn = "[review-btn-js], [ticket-new-js], [faq-new-js], [about-request-js], [sign-js]";
+    var modalBtn = "[modalMessage-btn-js], [review-btn-js], [ticket-new-js], [faq-new-js], [about-request-js], [sign-js]";
 
     $(modalBtn).magnificPopup({
       type: 'inline',
@@ -1386,11 +1460,12 @@ $(document).ready(function () {
     if (!viewportMeta.length > 0) return;
 
     if (screen.width <= 360) {
-      viewportMeta.attr('content', 'width=360, minimum-scale=1, user-scalable=no');
+      viewportMeta.attr('content', 'width=360, user-scalable=no');
     } else {
-      if ($('head meta[name="viewport"]').length === 0) {
-        viewportMeta.attr('content', 'width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no');
-      }
+      // if ($('head meta[name="viewport"]').length === 0) {
+      //   viewportMeta.attr('content', 'width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no');
+      // }
+      viewportMeta.attr('content', 'width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no');
     }
   }
 
