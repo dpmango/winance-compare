@@ -1,0 +1,110 @@
+
+<div class="modal modal--sign mfp-with-anim" id="modalSign">
+  <!-- MODAL SIGN/REGISTER-->
+  <div class="modal__header"><a class="is-active" href="#" title="" data-id="0" change-sign-js="change-sign-js">Вход</a><a href="#" title="" data-id="1" change-sign-js="change-sign-js">Регистрация</a></div>
+  <div class="modal__body modal__body-0 is-active">
+    <form action="" method="" autocomplete="off" sign-form-js="sign-form-js">
+      <div class="form__field form__field--p">
+        <input class="form__input" type="text" name="signin_email" id="signin_email" placeholder=""/>
+        <label class="form__label" for="signin_email">Адрес почты</label>
+      </div>
+      <div class="form__field form__field--p">
+        <input class="form__input" type="password" name="signin_password" id="signin_password" placeholder=""/>
+        <label class="form__label" for="signin_password">Пароль</label>
+      </div>
+      <div class="form__field-btn">
+        <button class="form__btn btn btn--color btn--full" type="submit">Войти</button>
+      </div>
+      <div class="form__field-link"><a class="form__link" href="#" title="">Забыли пароль?</a></div>
+    </form>
+  </div>
+  <div class="modal__body modal__body-1">
+    <form action="" method="" autocomplete="off" register-form-js="register-form-js">
+      <p class="modal__subtitle">Представьтесь</p>
+      <div class="form__field form__field--p">
+        <input class="form__input" type="text" name="register_name" id="register_name" placeholder=""/>
+        <label class="form__label" for="register_name">Имя</label>
+      </div>
+      <div class="form__field form__field--p">
+        <input class="form__input" type="text" name="register_sname" id="register_sname" placeholder=""/>
+        <label class="form__label" for="register_sname">Отчество</label>
+      </div>
+      <div class="form__field form__field--p">
+        <input class="form__input" type="text" name="register_surname" id="register_surname" placeholder=""/>
+        <label class="form__label" for="register_surname">Фамилия</label>
+      </div>
+      <p class="modal__subtitle modal__subtitle--m">Контакты и пароль</p>
+      <div class="form__field form__field--p">
+        <input class="form__input" type="tel" name="register_phone" id="register_phone" placeholder=""/>
+        <label class="form__label" for="register_phone">Телефон</label>
+      </div>
+      <div class="form__field form__field--p">
+        <input class="form__input" type="text" name="register_email" id="register_email" placeholder=""/>
+        <label class="form__label" for="register_email">Укажите почту</label>
+      </div>
+      <div class="form__field form__field--p">
+        <input class="form__input" type="password" name="register_pass" id="register_pass" placeholder=""/>
+        <label class="form__label" for="register_pass">Пароль</label>
+      </div>
+      <div class="form__field form__field--p">
+        <input class="form__input" type="password" name="register_passRepeat" id="register_passRepeat" placeholder=""/>
+        <label class="form__label" for="register_passRepeat">Подтвердите пароль</label>
+      </div>
+      <p class="modal__subtitle modal__subtitle--m">День рождения</p>
+      <div class="form__field-group">
+        <div class="form__field form__field--date form__field--select form__field--p">
+          <select name="register_day" id="register_day" selectric-js="selectric-js">
+            <option value="" disabled="disabled" selected="selected">00</option>
+            <option value="00">00</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+          </select>
+          <label class="form__label" for="register_day">День</label>
+        </div>
+        <div class="form__field form__field--date form__field--select form__field--p">
+          <select name="register_month" id="register_month" selectric-js="selectric-js">
+            <option value="" disabled="disabled" selected="selected">00</option>
+            <option value="00">00</option>
+            <option value="00">00</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+          </select>
+          <label class="form__label" for="register_month">Месяц</label>
+        </div>
+        <div class="form__field form__field--date form__field--select form__field--p">
+          <select name="register_year" id="register_year" selectric-js="selectric-js">
+            <option value="" disabled="disabled" selected="selected">0000</option>
+            <option value="0000">0000</option>
+            <option value="0000">0000</option>
+            <option value="0001">0001</option>
+            <option value="0002">0002</option>
+            <option value="0003">0003</option>
+            <option value="0004">0004</option>
+            <option value="0005">0005</option>
+          </select>
+          <label class="form__label" for="register_year">Год</label>
+        </div>
+      </div>
+      <p class="modal__subtitle modal__subtitle--m">Докажите что вы не робот. <br>Сколько у вас пальцев на руке?</p>
+      <div class="form__field form__field--p form__field--m">
+        <input class="form__input" type="password" name="register_robot" id="register_robot" placeholder=""/>
+        <label class="form__label" for="register_robot">Укажите цифру</label>
+      </div>
+      <div class="form__field-btn">
+        <button class="form__btn btn btn--color btn--full" type="submit">Зарегистрироваться</button>
+      </div>
+      <div class="form__field form__field-checkbox">
+        <div class="ui-checkbox">
+          <input type="checkbox" name="register_approve" id="register_approve" checked="checked"/>
+          <label for="register_approve">Я прочитал(а) и полностью согласен(на) <a href='#'>с пользовательским соглашением.</a></label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

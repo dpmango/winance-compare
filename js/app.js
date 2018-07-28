@@ -1373,7 +1373,7 @@ $(document).ready(function () {
       }
     });
 
-    var modalBtn = "[modalMessage-btn-js], [review-btn-js], [ticket-new-js], [faq-new-js], [about-request-js], [sign-js]";
+    var modalBtn = "[modalMessage-btn-js], [review-btn-js], [ticket-new-js], [faq-new-js], [about-request-js]";
 
     $(modalBtn).magnificPopup({
       type: 'inline',
@@ -1393,6 +1393,33 @@ $(document).ready(function () {
         close: function close() {
           // $('html').removeClass('mfp-helper');
           _window.scrollTop(startWindowScroll);
+        }
+      }
+    });
+
+    // SIGN MODAL
+    $("[sign-js]").magnificPopup({
+      items: {
+        type: 'ajax',
+        src: 'modal-sign.html'
+      },
+      fixedContentPos: true,
+      fixedBgPos: true,
+      overflowY: 'auto',
+      closeBtnInside: true,
+      preloader: false,
+      midClick: true,
+      removalDelay: 300,
+      mainClass: 'popup-buble',
+      callbacks: {
+        beforeOpen: function beforeOpen() {
+          startWindowScroll = _window.scrollTop();
+        },
+        close: function close() {
+          _window.scrollTop(startWindowScroll);
+        },
+        ajaxContentAdded: function ajaxContentAdded() {
+          // Ajax content is loaded and appended to DOM
         }
       }
     });
