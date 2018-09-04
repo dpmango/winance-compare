@@ -9180,7 +9180,7 @@ body.is-hideScroll, html.is-hideScroll {
 
 .icon-clock {
   background-image: url("../img/sprite.png");
-  background-position: -97px -159px;
+  background-position: -124px -159px;
   background-repeat: no-repeat;
   width: 14px;
   height: 14px;
@@ -9260,7 +9260,7 @@ body.is-hideScroll, html.is-hideScroll {
 
 .icon-fr {
   background-image: url("../img/sprite.png");
-  background-position: -149px -159px;
+  background-position: -148px -159px;
   background-repeat: no-repeat;
   width: 18px;
   height: 10px;
@@ -9276,7 +9276,7 @@ body.is-hideScroll, html.is-hideScroll {
 
 .icon-gr {
   background-image: url("../img/sprite.png");
-  background-position: -121px -159px;
+  background-position: -176px -159px;
   background-repeat: no-repeat;
   width: 18px;
   height: 10px;
@@ -9284,6 +9284,22 @@ body.is-hideScroll, html.is-hideScroll {
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .icon-gr {
+    -webkit-background-size: 208px 202px;
+            background-size: 208px 202px;
+    background-image: url("../img/sprite@2x.png");
+  }
+}
+
+.icon-logout {
+  background-image: url("../img/sprite.png");
+  background-position: -97px -159px;
+  background-repeat: no-repeat;
+  width: 17px;
+  height: 16px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .icon-logout {
     -webkit-background-size: 208px 202px;
             background-size: 208px 202px;
     background-image: url("../img/sprite@2x.png");
@@ -10668,6 +10684,15 @@ html.mfp-helper body {
 
 .modal--message .modal__title {
   text-align: center;
+  font-size: 28px;
+}
+
+.modal--message .form__field-btn {
+  margin-bottom: 15px;
+}
+
+.modal--message .form__field-btn:last-child {
+  margin-bottom: 0;
 }
 
 .modal__title {
@@ -10990,6 +11015,27 @@ html.mfp-helper body {
 
 .btn--colorWT:hover, .btn--colorWT:focus, .btn--colorWT:focus {
   border-color: #fff;
+  -webkit-transition: border-color 0.15s ease-in-out;
+  -o-transition: border-color 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out;
+  -webkit-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
+}
+
+.btn--red {
+  border-color: #FF635C;
+  background-color: transparent;
+  color: #FF635C;
+  -webkit-transition: border-color 0.15s ease-in-out;
+  -o-transition: border-color 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.btn--red:hover, .btn--red:focus, .btn--red:focus {
+  border-color: #FF635C;
+  color: white;
+  background-color: #FF635C;
   -webkit-transition: border-color 0.15s ease-in-out;
   -o-transition: border-color 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out;
@@ -11564,6 +11610,10 @@ html.mfp-helper body {
   -webkit-transition: opacity 0.15s ease-in-out;
   -o-transition: opacity 0.15s ease-in-out;
   transition: opacity 0.15s ease-in-out;
+}
+
+.parlor .icon-logout {
+  margin-left: 10px;
 }
 
 .phone.phone--footer {
@@ -13594,6 +13644,14 @@ input[type=range]::-moz-range-thumb {
   bottom: 0;
   width: 100%;
   min-height: 450px;
+  opacity: 0;
+  -webkit-transition: opacity 0.25s ease-in-out;
+  -o-transition: opacity 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.homepage .main__line-wrap.is-ready {
+  opacity: 1;
 }
 
 @media only screen and (max-width: 767px) {

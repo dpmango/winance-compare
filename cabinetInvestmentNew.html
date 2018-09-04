@@ -59,7 +59,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="header__wrapper-right wow wowFadeUp" data-animation-delay="0.7s"><a class="parlor" href="cabinet.html" title=""><i class="parlor__icon icon-parlor"></i>Кабинет</a></div>
+              <div class="header__wrapper-right wow wowFadeUp" data-animation-delay="0.7s"><a class="parlor" href="cabinet.html" title=""><i class="parlor__icon icon-parlor"></i><span>Кабинет</span></a></div>
               <div class="header__wrapper-mobile wow wowFadeUp" data-animation-delay="0.35s">
                 <div class="hamburger" hamburger-js="hamburger-js">
                   <div class="hamburger__box">
@@ -390,15 +390,48 @@
       <div class="modal modal--message mfp-hide mfp-with-anim" id="modalMessage">
         <div class="modal__header"></div>
         <div class="modal__body">
-          <p class="modal__title">Сообщение о чем-то важном</p>
+          <p class="modal__title">Сообщение <br> о чем-то важном</p>
           <form action="" method="" autocomplete="off">
             <div class="form__field-btn">
-              <button class="form__btn btn btn--color btn--full" type="button">Действие</button>
+              <button class="form__btn btn btn--color" type="button">Действие</button>
             </div>
           </form>
         </div>
       </div>
       <!-- MODAL ABOUT REQUEST :: END-->
+      <!-- MODAL ABOUT REQUEST :: END-->
+      <div class="modal modal--message mfp-hide mfp-with-anim" id="modalMessage2">
+        <div class="modal__header"></div>
+        <div class="modal__body">
+          <p class="modal__title">Сообщение <br> о чем-то важном</p>
+          <form action="" method="" autocomplete="off">
+            <div class="form__field-btn">
+              <button class="form__btn btn btn--color" type="button">Да</button>
+            </div>
+            <div class="form__field-btn">
+              <button class="form__btn btn btn--red" type="button">Нет</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- MODAL ABOUT REQUEST :: END-->
+      <!-- MODAL RECOVER :: START-->
+      <div class="modal modal--sign mfp-hide mfp-with-anim" id="modalRecover">
+        <div class="modal__header"><a class="is-active" href="#" title="">Восстановить пароль</a></div>
+        <div class="modal__body modal__body-0 is-active">
+          <form action="" method="" autocomplete="off" recovery-form-js>
+            <div class="form__field form__field--p">
+              <input class="form__input" type="text" name="recover_email" id="recover_email" placeholder="">
+              <label class="form__label" for="recover_email">Адрес почты</label>
+            </div>
+            <div class="form__field-btn">
+              <button class="form__btn btn btn--color btn--full" type="submit">Отправить</button>
+            </div>
+            <div class="form__field-link"><a class="form__link" href="#" title="" js-close-modal>Я передумал</a></div>
+          </form>
+        </div>
+      </div>
+      <!-- MODAL RECOVER :: END-->
       <!-- MODAL SIGN/REGISTER :: END-->
       <div class="modal modal--sign mfp-hide mfp-with-anim" id="modalSign">
         <div class="modal__header"><a class="is-active" href="#" title="" data-id="0" change-sign-js>Вход</a><a href="#" title="" data-id="1" change-sign-js>Регистрация</a></div>
